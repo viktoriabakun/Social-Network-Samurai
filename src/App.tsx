@@ -12,7 +12,8 @@ import {addPost, MessagesPage, PostsProps, RootStateType} from "./redux/state";
 
 type PropsType = {
     state: RootStateType
-    addPost: (message: string) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
 }
 const App: FC<PropsType> = (props) => {
 
@@ -22,8 +23,16 @@ const App: FC<PropsType> = (props) => {
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage}/>}/>
-                <Route path='/profile' render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
+                <Route path='/dialogs'
+                       render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                <Route path='/profile'
+                       render={() => <Profile
+                                        profilePage={props.state.profilePage}
+                                        addPost={props.addPost}
+                       updateNewPostText={props.updateNewPostText}
+                       />}/>
+
+
                 <Route path='/news' render={() => <News/>}/>
                 <Route path='/music' render={() => <Music/>}/>
                 <Route path='/settings' render={() => <Settings/>}/>

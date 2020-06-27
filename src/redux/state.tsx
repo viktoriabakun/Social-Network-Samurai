@@ -8,6 +8,7 @@ export type PostsProps = {
 }
 export type ProfilePage = {
     posts: Array<PostsProps>
+    newPostText: string
 }
 export type DialogsProps = {
     id: string
@@ -39,7 +40,8 @@ export let state: RootStateType = {
             { id: v1(), message:'I studied React for 10 hours today', count: 50},
             { id: v1(), message: 'Hello', count: 40},
             { id: v1(), message:'123456789', count: 1000000}
-        ]
+        ],
+        newPostText: ''
     },
     dialogsPage: {
         messages: [
@@ -57,14 +59,21 @@ export let state: RootStateType = {
     }
 }
 
-export const addPost = (postMessage: string) => {
+
+export const addPost = () => {
     const newPost: PostsProps = {
         id: new Date().getTime().toString(),
-        message: postMessage,
+        message: state.profilePage.newPostText,
         count: 0
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = ('');
     console.log(state.profilePage.posts)
+    rerenderEntireTree(state);
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 }
 
