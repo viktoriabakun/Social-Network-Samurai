@@ -2,7 +2,7 @@ import React from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {MessagesPage, RootStateType} from "../../redux/state";
+import {MessagesPage} from "../../redux/state";
 import {} from "../../App";
 import AvatarItem from "./Avatar/AvatarItem";
 

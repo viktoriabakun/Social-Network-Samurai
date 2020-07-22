@@ -9,7 +9,7 @@ type Message = {
 const Post = (props: Message) => {
     return (
         <div className={s.item}>
-            <img
+            <img alt='post_img'
                 src='https://cdn.imgbin.com/13/18/14/imgbin-avatar-vk-user-profile-deadpool-pixel-art-avatar-nRH7iwPxqeg72u0hC6SZmXfga.jpg'/>
             <div>
                 {props.message}

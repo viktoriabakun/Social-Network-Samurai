@@ -5,7 +5,7 @@ import {AvatarsType} from "../../../redux/state";
 const AvatarItem = (props: AvatarsType) => {
     return (
         <div className={s.avatar}>
-        <img src={props.src} id={props.id}/>
+        <img alt='avatar' src={props.src} id={props.id}/>
         </div>
     )
 }
