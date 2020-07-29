@@ -1,4 +1,3 @@
-import {rerenderEntireTree} from "../render";
 import {v1} from "uuid";
 
 export type PostsProps = {
@@ -32,6 +31,9 @@ export type RootStateType = {
    dialogsPage: MessagesPage
 }
 
+let rerenderEntireTree = () => {
+    console.log('state was changed')
+}
 export let state: RootStateType = {
     profilePage: {
         posts:  [
@@ -58,8 +60,6 @@ export let state: RootStateType = {
         ]
     }
 }
-
-
 export const addPost = () => {
     const newPost: PostsProps = {
         id: new Date().getTime().toString(),
@@ -69,13 +69,17 @@ export const addPost = () => {
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = ('');
     console.log(state.profilePage.posts)
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
-
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
+
+export const subscribe = (observer: () => void) => {
+rerenderEntireTree = observer;
+}
+
 
 
 export default state;
