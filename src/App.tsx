@@ -8,14 +8,15 @@ import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {RootStateType} from "./redux/state";
+import {ActionsTypes, RootStateType, StoreType} from "./redux/state";
 
 type PropsType = {
     state: RootStateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void
+    store: StoreType
+    // updateNewPostText: (newText: string) => void
 }
-const App: FC<PropsType> = (props) => {
+const App = (props: PropsType) => {
 
     return (
 
@@ -24,12 +25,11 @@ const App: FC<PropsType> = (props) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                       render={() => <Dialogs store={props.store}/>}/>
                 <Route path='/profile'
                        render={() => <Profile
                                         profilePage={props.state.profilePage}
-                                        addPost={props.addPost}
-                       updateNewPostText={props.updateNewPostText}
+                                        dispatch={props.dispatch}
                        />}/>
 
 

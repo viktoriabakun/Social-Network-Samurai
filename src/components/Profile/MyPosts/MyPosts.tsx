@@ -1,15 +1,21 @@
 import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {PostsProps} from "../../../redux/state";
+import {
+    ActionsTypes,
+    addPostCreator,
+    // AddPostActionType,
+    PostsProps,
+    changeNewTextCreator
+} from "../../../redux/state";
 
 
 type PropsType = {
     posts:  Array<PostsProps>
-    addPost: () => void
     newPostText: string
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: any) => void
 }
+
 const MyPosts = (props: PropsType) => {
 
     let postsElements = props.posts.map(p => <Post message={p.message} count={p.count}/>)
@@ -17,13 +23,13 @@ const MyPosts = (props: PropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
-            props.addPost();
+            props.dispatch(addPostCreator());
+            console.log('add post was clicked')
     }
 
     const onPostChange = () => {
-        let text = newPostElement.current;
-        if (text)
-            props.updateNewPostText(text.value);
+        let text = newPostElement.current ? newPostElement.current.value : "---";
+         props.dispatch(changeNewTextCreator(text))
     }
 
     return <div className={s.posts_block}>
