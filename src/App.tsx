@@ -8,11 +8,13 @@ import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {ActionsTypes, RootStateType, StoreType} from "./redux/state";
+import { RootStateType, StoreType} from "./redux/state";
+import {ProfileActionType} from "./redux/profile-reducer";
+import {DialogsActionType} from "./redux/dialogs-reducer";
 
 type PropsType = {
     state: RootStateType
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: ProfileActionType | DialogsActionType) => void
     store: StoreType
     // updateNewPostText: (newText: string) => void
 }
