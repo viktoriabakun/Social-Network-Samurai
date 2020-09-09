@@ -7,9 +7,8 @@ import {
 import {changeNewTextCreator, addPostCreator} from "../../../redux/profile-reducer";
 
 
-
 type PropsType = {
-    posts:  Array<PostsProps>
+    posts: Array<PostsProps>
     newPostText: string
     dispatch: (action: any) => void
 }
@@ -21,13 +20,14 @@ const MyPosts = (props: PropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
-            props.dispatch(addPostCreator());
-            console.log('add post was clicked')
+        props.dispatch(addPostCreator());
+        console.log('add post was clicked')
     }
 
     const onPostChange = () => {
+        debugger
         let text = newPostElement.current ? newPostElement.current.value : "---";
-         props.dispatch(changeNewTextCreator(text))
+        props.dispatch(changeNewTextCreator(text))
     }
 
     return <div className={s.posts_block}>

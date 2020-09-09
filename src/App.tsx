@@ -16,7 +16,6 @@ type PropsType = {
     state: RootStateType
     dispatch: (action: ProfileActionType | DialogsActionType) => void
     store: StoreType
-    // updateNewPostText: (newText: string) => void
 }
 const App = (props: PropsType) => {
 

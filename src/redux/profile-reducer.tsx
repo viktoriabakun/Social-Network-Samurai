@@ -1,10 +1,21 @@
 import {PostsProps, ProfilePage} from "./state";
+import {v1} from "uuid";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT';
 
+let initialState: ProfilePage = {
+    posts: [
+        {id: v1(), message: 'Hi', count: 15},
+        {id: v1(), message: 'It\'s my first post', count: 20},
+        {id: v1(), message: 'I studied React for 10 hours today', count: 50},
+        {id: v1(), message: 'Hello', count: 40},
+        {id: v1(), message: '123456789', count: 1000000}
+    ],
+    newPostText: 'it-kamasutra.com'
+}
 
-const profileReducer = (state: ProfilePage, action: ProfileActionType) => {
+const profileReducer = (state: ProfilePage = initialState, action: ProfileActionType) => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PostsProps = {
