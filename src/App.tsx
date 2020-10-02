@@ -8,9 +8,10 @@ import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import { RootStateType, StoreType} from "./redux/state";
+import {RootStateType, StoreType} from "./redux/state";
 import {ProfileActionType} from "./redux/profile-reducer";
 import {DialogsActionType} from "./redux/dialogs-reducer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type PropsType = {
     state: RootStateType
@@ -26,14 +27,9 @@ const App = (props: PropsType) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={() => <Dialogs store={props.store}/>}/>
+                       render={() => <DialogsContainer store={props.store}/>}/>
                 <Route path='/profile'
-                       render={() => <Profile
-                                        profilePage={props.state.profilePage}
-                                        dispatch={props.dispatch}
-                                        store={props.store}
-                       />}/>
-
+                       render={() => <Profile store={props.store}/>}/>
 
                 <Route path='/news' render={() => <News/>}/>
                 <Route path='/music' render={() => <Music/>}/>
