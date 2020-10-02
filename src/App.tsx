@@ -31,6 +31,7 @@ const App = (props: PropsType) => {
                        render={() => <Profile
                                         profilePage={props.state.profilePage}
                                         dispatch={props.dispatch}
+                                        store={props.store}
                        />}/>
 
 
