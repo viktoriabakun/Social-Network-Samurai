@@ -1,33 +1,33 @@
-import React, {ChangeEvent} from "react";
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
+import React from "react";
 import {StoreType} from "../../redux/state";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
-import AvatarItem from "./Avatar/AvatarItem";
 import Dialogs from "./Dialogs";
+import StoreContext from "../../StoreContext";
 
-type PropsType = {
+export type DialogsContainerType = {
     store: StoreType
 }
 
-const DialogsContainer = (props: PropsType) => {
+const DialogsContainer = () => {
 
-    let state = props.store.getState().dialogsPage;
 
-    // let avatarsElements = state.avatars.map(a => <AvatarItem id={a.id} src={a.src}/>)
+    return <StoreContext.Consumer>
+        { store => {
+            // let state = store.getState().dialogsPage;
 
-    const onSendMessageClick = () => {
-        props.store.dispatch(sendMessageCreator())
+            const onSendMessageClick = () => {
+            store.dispatch(sendMessageCreator())
+        }
+
+            const onNewMessageChange = (body: any) => {
+            store.dispatch(updateNewMessageBodyCreator(body))
+        }
+            return <Dialogs updateNewMessageBody={onNewMessageChange}
+                             sendMessage={onSendMessageClick}
+                             dialogsPage={store.getState().dialogsPage}
+        />}
     }
-
-    const onNewMessageChange = (body: any) => {
-        props.store.dispatch(updateNewMessageBodyCreator(body))
-    }
-
-    return <Dialogs updateNewMessageBody={onNewMessageChange}
-                    sendMessage={onSendMessageClick} store={props.store}
-                    dialogsPage={state}
-    />
+    </StoreContext.Consumer>
 }
 
 export default DialogsContainer;

@@ -6,7 +6,6 @@ import {MessagesPage, StoreType} from "../../redux/state";
 import AvatarItem from "./Avatar/AvatarItem";
 
 type PropsType = {
-    store: StoreType
     dialogsPage: MessagesPage
     updateNewMessageBody: (body: any) => void
     sendMessage: () => void
