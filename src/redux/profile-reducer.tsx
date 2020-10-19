@@ -40,6 +40,7 @@ export const addPostCreator = ():AddPostActionCreatorType => {
         type: ADD_POST,
     } as const
 }
+
 export const changeNewTextCreator = (text: string):ChangeNewTextActionCreatorType => {
     return {
         type: CHANGE_NEW_TEXT,
