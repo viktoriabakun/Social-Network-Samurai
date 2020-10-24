@@ -17,23 +17,26 @@ let initialState: ProfilePage = {
 
 const profileReducer = (state: ProfilePage = initialState, action: ProfileActionType) => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             const newPost: PostsProps = {
                 id: '5',
                 message: state.newPostText,
                 count: 0
             };
-            state.posts.push(newPost);
-            state.newPostText = ('');
-            return state;
-
+            let stateCopy = {...state}
+            stateCopy.posts = [...state.posts];
+            stateCopy.posts.push(newPost);
+            stateCopy.newPostText = ('');
+            return stateCopy;
+    }
         case CHANGE_NEW_TEXT:
-            state.newPostText = action.newText;
-            return state;
+            let stateCopy = {...state}
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
         default:
             return state;
     }
-}
+} // теперь этот редьюсер является чистой функцией (сделали копию)
 
 export const addPostCreator = ():AddPostActionCreatorType => {
     return {

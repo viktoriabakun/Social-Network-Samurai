@@ -6,10 +6,9 @@ import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import store from "./redux/redux-store";
-import {RootStateType} from "./redux/state";
 
-const rerenderEntireTree = (state: RootStateType) => {
-    ReactDOM.render(
+
+ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
             <App/>
@@ -17,7 +16,7 @@ const rerenderEntireTree = (state: RootStateType) => {
         </BrowserRouter>,
         document.getElementById('root')
     );
-}
+
 
 export type PostType = {
     id: number,
@@ -34,13 +33,5 @@ export type MessageType = {
     id: number,
     message: string
 }
-
-rerenderEntireTree(store.getState());
-
-store.subscribe(() => {
-    let state = store.getState()
-    rerenderEntireTree(state)
-});
-
 
 serviceWorker.unregister();

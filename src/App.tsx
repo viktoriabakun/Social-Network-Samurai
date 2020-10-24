@@ -9,11 +9,6 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-// type PropsType = {
-//     state: RootStateType
-//     dispatch: (action: ProfileActionType | DialogsActionType) => void
-//     store?: StoreType
-// }
 const App = () => {
 
     return (
