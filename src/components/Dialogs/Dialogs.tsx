@@ -2,7 +2,7 @@ import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {MessagesPage, StoreType} from "../../redux/state";
+import {MessagesPage} from "../../redux/state";
 import AvatarItem from "./Avatar/AvatarItem";
 
 type PropsType = {
@@ -15,9 +15,9 @@ const Dialogs = (props: PropsType) => {
 
     let state = props.dialogsPage;
 
-    let avatarsElements = state.avatars.map(a => <AvatarItem id={a.id} src={a.src}/>)
-    let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
-    let messagesElements = state.messages.map(m => <Message message={m.message} id={m.id}/>)
+    let avatarsElements = state.avatars.map(a => <AvatarItem id={a.id} key={a.id} src={a.src}/>)
+    let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>)
+    let messagesElements = state.messages.map(m => <Message message={m.message} key={m.id} id={m.id}/>)
     let newMessageBody = state.newMessageBody;
 
     const onSendMessageClick = () => {

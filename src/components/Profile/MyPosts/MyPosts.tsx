@@ -1,10 +1,7 @@
 import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {
-    PostsProps,
-} from "../../../redux/state";
-import {changeNewTextCreator, addPostCreator} from "../../../redux/profile-reducer";
+import {PostsProps,} from "../../../redux/state";
 
 
 type PropsType = {
@@ -17,7 +14,7 @@ type PropsType = {
 
 const MyPosts = (props: PropsType) => {
 
-    let postsElements = props.posts.map(p => <Post message={p.message} count={p.count}/>)
+    let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} count={p.count}/>)
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const onAddPost = () => {

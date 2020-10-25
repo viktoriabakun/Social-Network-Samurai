@@ -4,7 +4,7 @@ import {MessageProps} from "../../../redux/state";
 
 const Message = (props: MessageProps) => {
 
-    let newMessageElement = React.createRef<HTMLTextAreaElement>();
+    // let newMessageElement = React.createRef<HTMLTextAreaElement>();
 
 
     return (
