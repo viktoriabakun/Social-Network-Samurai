@@ -31,6 +31,31 @@ let store: StoreType = {
                     src: 'https://s-media-cache-ak0.pinimg.com/564x/0c/d5/cf/0cd5cfd1ccf0b6ceb12ad7efba2b101c.jpg'
                 }
             ]
+        },
+        usersPage : {
+            users: [
+                {
+                    id: 1,
+                    followed: false,
+                    fullName: 'Dmitriy',
+                    status: 'I am a boss',
+                    location: {city: 'Minsk', country: 'Belarus'}
+                },
+                {
+                    id: 2,
+                    followed: true,
+                    fullName: 'Sasha',
+                    status: 'I am a boss too',
+                    location: {city: 'Moscow', country: 'Russia'}
+                },
+                {
+                    id: 3,
+                    followed: false,
+                    fullName: 'Andrew',
+                    status: 'I am a boss too',
+                    location: {city: 'Kiev', country: 'Ukraine'}
+                },
+            ]
         }
     },
     _callSubscriber() {
@@ -80,6 +105,7 @@ export type MessagesPage = {
 export type RootStateType = {
     profilePage: ProfilePage
     dialogsPage: MessagesPage
+    usersPage: UsersType
 }
 export type StoreType = {
     _state: RootStateType,
@@ -88,6 +114,23 @@ export type StoreType = {
     getState: () => RootStateType,
     dispatch: (action: ActionType) => void,
     action?: ActionType
+}
+
+export type LocationType = {
+    city: string
+    country: string
+}
+
+export type UserObjType = {
+    id: number
+    followed: boolean
+    fullName: string
+    status: string
+    location: LocationType
+}
+
+export type UsersType = {
+    users: UserObjType[]
 }
 
 export type ActionType = ProfileActionType | DialogsActionType
