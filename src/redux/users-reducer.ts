@@ -33,7 +33,7 @@ const usersReducer = (state = initialState, action: any) => {
     switch (action.type) {
 
         case FOLLOW:
-            let stateCopy = {
+            return {
                 ...state,
                 users: state.users.map(u => {
                     if (u.id === action.userID) {
@@ -44,6 +44,16 @@ const usersReducer = (state = initialState, action: any) => {
             }
 
         case UNFOLLOW:
+
+            return {
+                ...state,
+                users: state.users.map(u => {
+                    if (u.id === action.userID) {
+                        return {...u, followed: false}
+                    }
+                    return u
+                })
+            }
 
         default:
             return state;
