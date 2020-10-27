@@ -2,7 +2,7 @@ import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {MessagesPage} from "../../redux/state";
+import {MessagesPage} from "../../redux/store";
 import AvatarItem from "./Avatar/AvatarItem";
 
 type PropsType = {

@@ -1,4 +1,4 @@
-import {MessagesPage} from "./state";
+import {MessagesPage} from "./store";
 import {v1} from "uuid";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';

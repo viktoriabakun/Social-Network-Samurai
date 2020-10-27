@@ -1,6 +1,6 @@
 import React from "react";
 import s from './AvatarItem.module.css';
-import {AvatarsType} from "../../../redux/state";
+import {AvatarsType} from "../../../redux/store";
 
 const AvatarItem = (props: AvatarsType) => {
     return (

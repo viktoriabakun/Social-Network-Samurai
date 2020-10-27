@@ -1,4 +1,4 @@
-import {PostsProps, ProfilePage} from "./state";
+import {PostsProps, ProfilePage} from "./store";
 import {v1} from "uuid";
 
 const ADD_POST = 'ADD-POST';
