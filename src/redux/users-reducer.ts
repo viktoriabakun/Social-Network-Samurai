@@ -5,7 +5,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 
 
-let initialState: UsersType = {
+let initialState: any = {
     users: [
         // {
         //     id: 1,
