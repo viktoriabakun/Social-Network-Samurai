@@ -1,11 +1,17 @@
 import React from 'react';
 import axios from "axios";
-import {UsersType} from "../../redux/store";
+import {UserObjType, UsersType} from "../../redux/store";
 import styles from './Users.module.css';
 import userImg from '../../assets/images/userImg.png'
 
+type PropsType = {
+    users: Array<UserObjType>
+    follow: (userID: number) => void
+    unfollow: (userID: number) => void
+    setUsers: (users: Array<UserObjType>) => void
+}
 
-const Users = (props: UsersType) => {
+const Users = (props: PropsType) => {
 
     if (props.users.length === 0) {
 

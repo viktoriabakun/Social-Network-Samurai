@@ -1,4 +1,4 @@
-import {UsersType} from "./store";
+import {UserObjType, UsersType} from "./store";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -74,6 +74,6 @@ const usersReducer = (state: UsersType = initialState, action: any) => {
 
 export const followAC = (userID: number) => ({type: FOLLOW, userID})
 export const unfollowAC = (userID: number) => ({type: UNFOLLOW, userID})
-export const setUsersAC = (users: UsersType) => ({type: SET_USERS, users})
+export const setUsersAC = (users: Array<UserObjType>) => ({type: SET_USERS, users})
 
 export default usersReducer;
