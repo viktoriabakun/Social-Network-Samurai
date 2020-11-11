@@ -13,13 +13,15 @@ type PropsType = {
 
 const Users = (props: PropsType) => {
 
-    if (props.users.length === 0) {
+    let getUsers = () => {
 
-        axios
-            .get("https://social-network.samuraijs.com/api/1.0/users")
-            .then(response => {
-                props.setUsers(response.data.items)
-            });
+        if (props.users.length === 0) {
+            axios
+                .get("https://social-network.samuraijs.com/api/1.0/users")
+                .then(response => {
+                    props.setUsers(response.data.items)
+                });
+        }
     }
     // props.setUsers(
     //     {
@@ -50,6 +52,7 @@ const Users = (props: PropsType) => {
 
 
     return <div>
+        <button onClick={getUsers}>Get users</button>
         {
             props.users.map(u => <div key={u.id}>
             <span>
