@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import {UserObjType} from "../../redux/store";
-import styles from './Users.module.css';
+import s from './Users.module.css';
 import userImg from '../../assets/images/userImg.png'
 
 type PropsType = {
@@ -9,6 +9,9 @@ type PropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
     setUsers: (users: Array<UserObjType>) => void
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number
 }
 
 
@@ -25,11 +28,25 @@ class Users extends React.Component<PropsType> {
         }
 
     render() {
-        return <div>
+
+            let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+            let pages = [];
+            for (let i=1; i <= pagesCount; i++){
+                pages.push(i);
+            }
+
+        return ( <div>
+            <div>
+                {pages.map( p => {
+                    // @ts-ignore
+                    return <span className={this.props.currentPage === p && s.selectedPage}>{p}</span>
+                } )}
+
+            </div>
             {
                 this.props.users.map(u => <div key={u.id}>
             <span>
-                <div><img src={u.photos.small != null ? u.photos.small : userImg} alt="" className={styles.userPhoto}/></div>
+                <div><img src={u.photos.small != null ? u.photos.small : userImg} alt="" className={s.userPhoto}/></div>
                 <div>
                     {u.followed
                         ? <button onClick={() => {
@@ -51,7 +68,7 @@ class Users extends React.Component<PropsType> {
             </span>
                 </div>)
             }
-        </div>
+        </div>)
     }
 }
 

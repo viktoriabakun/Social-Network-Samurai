@@ -68,6 +68,10 @@ let store: StoreType = {
                     location: {city: 'Kiev', country: 'Ukraine'},
                 },
             ],
+            pageSize: 5,
+            totalUsersCount: 20,
+            currentPage: 1
+
 
 
         }
@@ -120,6 +124,9 @@ export type RootStateType = {
     profilePage: ProfilePage
     dialogsPage: MessagesPage
     usersPage: {
+        currentPage: number;
+        pageSize: number,
+        totalUsersCount: number,
         users: Array<UserObjType>
     }
 }
@@ -147,8 +154,6 @@ export type UserObjType = {
     name: string
     status: string
     location: LocationType
-    // photos: any
-
 }
 
 export type UsersType = {
