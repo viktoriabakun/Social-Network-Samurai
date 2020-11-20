@@ -27,6 +27,10 @@ class Users extends React.Component<PropsType> {
 
     }
 
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+    }
+
     render() {
 
         let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
@@ -40,9 +44,7 @@ class Users extends React.Component<PropsType> {
                 {pages.map(p => {
                     // @ts-ignore
                     return <span className={this.props.currentPage === p && s.selectedPage}
-                                 onClick={() => {
-                                     this.props.setCurrentPage(p)
-                                 }}
+                                 onClick={(e) => {this.onPageChanged(p)}}
                     >{p}</span>
                 })}
 
