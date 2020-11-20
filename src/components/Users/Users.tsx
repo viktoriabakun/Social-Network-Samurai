@@ -12,35 +12,39 @@ type PropsType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number
+    setCurrentPage: Function
 }
 
 
 class Users extends React.Component<PropsType> {
 
-        componentDidMount()
-        {
-            axios
-                .get("https://social-network.samuraijs.com/api/1.0/users")
-                .then(response => {
-                    this.props.setUsers(response.data.items)
-                });
+    componentDidMount() {
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            });
 
-        }
+    }
 
     render() {
 
-            let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-            let pages = [];
-            for (let i=1; i <= pagesCount; i++){
-                pages.push(i);
-            }
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+        let pages = [];
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i);
+        }
 
-        return ( <div>
+        return (<div>
             <div>
-                {pages.map( p => {
+                {pages.map(p => {
                     // @ts-ignore
-                    return <span className={this.props.currentPage === p && s.selectedPage}>{p}</span>
-                } )}
+                    return <span className={this.props.currentPage === p && s.selectedPage}
+                                 onClick={() => {
+                                     this.props.setCurrentPage(p)
+                                 }}
+                    >{p}</span>
+                })}
 
             </div>
             {
@@ -71,7 +75,6 @@ class Users extends React.Component<PropsType> {
         </div>)
     }
 }
-
 
 
 export default Users;
