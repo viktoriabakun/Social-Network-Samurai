@@ -3,7 +3,7 @@ import s from "./Users.module.css";
 import userImg from "../../assets/images/userImg.png";
 import {UserObjType, UsersType} from "../../redux/store";
 
-type UsersProps = {
+export type UsersProps = {
     users: Array<UserObjType>
     follow: (userID: number) => void
     unfollow: (userID: number) => void
