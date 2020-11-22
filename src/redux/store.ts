@@ -70,7 +70,8 @@ let store: StoreType = {
             ],
             pageSize: 5,
             totalUsersCount: 20,
-            currentPage: 1
+            currentPage: 1,
+            isFetching: false
 
 
 
@@ -124,6 +125,7 @@ export type RootStateType = {
     profilePage: ProfilePage
     dialogsPage: MessagesPage
     usersPage: {
+        isFetching: boolean;
         currentPage: number;
         pageSize: number,
         totalUsersCount: number,
