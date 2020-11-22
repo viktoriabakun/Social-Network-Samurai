@@ -71,10 +71,7 @@ let store: StoreType = {
             pageSize: 5,
             totalUsersCount: 20,
             currentPage: 1,
-            isFetching: false
-
-
-
+            isFetching: true,
         }
     },
     _callSubscriber() {

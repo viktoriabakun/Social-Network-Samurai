@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Users.module.css";
 import userImg from "../../assets/images/userImg.png";
-import {UserObjType, UsersType} from "../../redux/store";
+import {UserObjType} from "../../redux/store";
 
 export type UsersProps = {
     users: Array<UserObjType>
