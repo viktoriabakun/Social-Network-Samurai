@@ -13,13 +13,13 @@ export type UsersProps = {
     currentPage: number,
     setCurrentPage: Function,
     setTotalUsersCount: Function,
-    onPageChanged: Function,
+    onPageChanged: (pageNumber: number) => void
 }
 
 let Users = (props: UsersProps) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [];
+    let pages: Array<number> = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }

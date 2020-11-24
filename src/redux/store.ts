@@ -84,7 +84,7 @@ let store: StoreType = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        debugger
+
         this._state.profilePage = profileReducer(this._state.profilePage, action as ProfileActionType);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action as DialogsActionType);
         this._callSubscriber(this._state);
