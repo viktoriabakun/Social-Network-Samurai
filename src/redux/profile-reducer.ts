@@ -3,6 +3,7 @@ import {v1} from "uuid";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialState: ProfilePage = {
     posts: [
@@ -12,7 +13,8 @@ let initialState: ProfilePage = {
         {id: v1(), message: 'Hello', count: 40},
         {id: v1(), message: '123456789', count: 1000000}
     ],
-    newPostText: 'it-kamasutra.com'
+    newPostText: 'it-kamasutra.com',
+    profile: null,
 }
 
 const profileReducer = (state: ProfilePage = initialState, action: ProfileActionType) => {
@@ -23,35 +25,30 @@ const profileReducer = (state: ProfilePage = initialState, action: ProfileAction
                 message: state.newPostText,
                 count: 0
             };
-            return{
+            return {
                 ...state,
                 posts: [...state.posts, newPost],
                 newPostText: ''
             }
-    }
-        case CHANGE_NEW_TEXT:
+        }
+        case CHANGE_NEW_TEXT: {
             return {
                 ...state,
                 newPostText: action.newText
             }
+        }
+
+        case SET_USER_PROFILE: {
+            return {
+                ...state,
+                profile: action.profile
+            }
+        }
 
         default:
             return state;
     }
 } // теперь этот редьюсер является чистой функцией (сделали копию)
-
-export const addPostCreator = ():AddPostActionCreatorType => {
-    return {
-        type: ADD_POST,
-    } as const
-}
-
-export const changeNewTextCreator = (text: string):ChangeNewTextActionCreatorType => {
-    return {
-        type: CHANGE_NEW_TEXT,
-        newText: text,
-    } as const
-}
 
 export type AddPostActionCreatorType = {
     type: typeof ADD_POST
@@ -60,8 +57,32 @@ export type ChangeNewTextActionCreatorType = {
     type: typeof CHANGE_NEW_TEXT
     newText: string
 }
+export type SetUserProfileACType = {
+    type: typeof SET_USER_PROFILE
+    profile: any
+}
 
-export type ProfileActionType = AddPostActionCreatorType | ChangeNewTextActionCreatorType
+export const addPostCreator = (): AddPostActionCreatorType => {
+    return {
+        type: ADD_POST,
+    } as const
+}
+
+export const changeNewTextCreator = (text: string): ChangeNewTextActionCreatorType => {
+    return {
+        type: CHANGE_NEW_TEXT,
+        newText: text,
+    } as const
+}
+
+export const setUserProfileCreator = (profile: null): SetUserProfileACType => {
+    return {
+        type: SET_USER_PROFILE,
+        profile
+    } as const
+}
+
+export type ProfileActionType = AddPostActionCreatorType | ChangeNewTextActionCreatorType | SetUserProfileACType
 
 
 export default profileReducer;

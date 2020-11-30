@@ -74,24 +74,6 @@ class UsersContainer extends React.Component<PropsType> {
     }
 }
 
-
-// type MapStateType = {
-//     users: Array<UserObjType>,
-//     pageSize: number,
-//     totalUsersCount: number,
-//     currentPage: number,
-//     isFetching: boolean,
-// }
-
-// type MapDispatchType = {
-//     follow: (userID: number) => void
-//     unfollow: (userID: number) => void
-//     setUsers: (users: Array<UserObjType>) => void
-//     setCurrentPage: (pageNumber: number) => void
-//     setTotalUsersCount: (totalCount: number) => void
-//     toggleIsFetching: (isFetching: boolean) => void
-// }
-
 let mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
         users: state.usersPage.users,
@@ -101,29 +83,6 @@ let mapStateToProps = (state: RootStateType): MapStatePropsType => {
         isFetching: state.usersPage.isFetching,
     }
 }
-//
-// let mapDispatchToProps = (dispatch: Dispatch) : MapDispatchType=> {
-//     return {
-//         follow: (userID: number) => {
-//             dispatch(followAC(userID))
-//         },
-//         unfollow: (userID: number) => {
-//             dispatch(unfollowAC(userID))
-//         },
-//         setUsers: (users: Array<UserObjType>) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (pageNumber) => {
-//             dispatch(setCurrentPageAC(pageNumber))
-//         },
-//         setTotalUsersCount: (totalCount: number) => {
-//             dispatch(setUsersTotalCountAC(totalCount))
-//         },
-//         toggleIsFetching: (isFetching: boolean) => {
-//             dispatch(toggleIsFetchingAC(isFetching))
-//         },
-//     }
-// }
 
 type MapDispatchPropsType = {
     follow: (userID: number) => void

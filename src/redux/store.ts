@@ -12,7 +12,8 @@ let store: StoreType = {
                 {id: v1(), message: 'Hello', count: 40},
                 {id: v1(), message: '123456789', count: 1000000}
             ],
-            newPostText: ''
+            newPostText: '',
+            profile: null
         },
         dialogsPage: {
             messages: [],
@@ -99,6 +100,7 @@ export type PostsProps = {
 export type ProfilePage = {
     posts: Array<PostsProps>
     newPostText: string
+    profile: null
 }
 export type DialogsProps = {
     id: string

@@ -2,11 +2,13 @@ import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsCotainer";
 
-// type PropsType = {
-//     store: StoreType
-// }
+//дичь
+type PropsType = {
+   profile?: any
+}
+//дичь
 
-const Profile = () => {
+const Profile = (props: PropsType) => {
 
     return (
 
