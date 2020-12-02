@@ -1,11 +1,11 @@
-import {PostsProps, ProfilePage} from "./store";
+import {PostsProps, ProfileReducerType, ProfileType} from "./store";
 import {v1} from "uuid";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
-let initialState: ProfilePage = {
+let initialState: ProfileReducerType = {
     posts: [
         {id: v1(), message: 'Hi', count: 15},
         {id: v1(), message: 'It\'s my first post', count: 20},
@@ -14,10 +14,12 @@ let initialState: ProfilePage = {
         {id: v1(), message: '123456789', count: 1000000}
     ],
     newPostText: 'it-kamasutra.com',
-    profile: null,
+    profile: {} as ProfileType
 }
 
-const profileReducer = (state: ProfilePage = initialState, action: ProfileActionType) => {
+
+
+const profileReducer = (state: ProfileReducerType = initialState, action: ProfileActionType) => {
     switch (action.type) {
         case ADD_POST: {
             const newPost: PostsProps = {
@@ -59,7 +61,7 @@ export type ChangeNewTextActionCreatorType = {
 }
 export type SetUserProfileACType = {
     type: typeof SET_USER_PROFILE
-    profile: any
+    profile: ProfileType
 }
 
 export const addPostCreator = (): AddPostActionCreatorType => {
@@ -75,7 +77,7 @@ export const changeNewTextCreator = (text: string): ChangeNewTextActionCreatorTy
     } as const
 }
 
-export const setUserProfileCreator = (profile: null): SetUserProfileACType => {
+export const setUserProfileCreator = (profile: ProfileType): SetUserProfileACType => {
     return {
         type: SET_USER_PROFILE,
         profile

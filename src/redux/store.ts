@@ -13,7 +13,7 @@ let store: StoreType = {
                 {id: v1(), message: '123456789', count: 1000000}
             ],
             newPostText: '',
-            profile: null
+            profile: {} as  ProfileType,
         },
         dialogsPage: {
             messages: [],
@@ -85,7 +85,6 @@ let store: StoreType = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-
         this._state.profilePage = profileReducer(this._state.profilePage, action as ProfileActionType);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action as DialogsActionType);
         this._callSubscriber(this._state);
@@ -97,11 +96,36 @@ export type PostsProps = {
     message: string,
     count: number
 }
-export type ProfilePage = {
+export type ProfileReducerType = {
     posts: Array<PostsProps>
     newPostText: string
-    profile: null
+    profile: ProfileType
 }
+
+export type ProfileType = {
+    aboutMe: string,
+    contacts:
+        {
+            facebook: null | string,
+            website: null | string,
+            vk: null | string,
+            twitter: null | string,
+            instagram: null | string,
+            youtube: null | string,
+            github: null | string,
+            mainLink: null | string
+        },
+    lookingForAJob: boolean,
+    lookingForAJobDescription: null | string,
+    fullName: string,
+    userId: number,
+    photos:
+        {
+            small: string,
+            large: string
+        }
+}
+
 export type DialogsProps = {
     id: string
     name: string
@@ -121,7 +145,7 @@ export type MessagesPage = {
     newMessageBody: any
 }
 export type RootStateType = {
-    profilePage: ProfilePage
+    profilePage: ProfileReducerType
     dialogsPage: MessagesPage
     usersPage: {
         isFetching: boolean;
