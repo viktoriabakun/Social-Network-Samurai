@@ -4,3 +4,11 @@
     padding: 20px;
     border: 5px solid black;
 }
+
+.loginBlock{
+    float: left;
+}
+
+.loginBlock a {
+    color: white;
+}
