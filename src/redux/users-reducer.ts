@@ -1,4 +1,4 @@
-import {UserObjType, UsersType} from "./store";
+import {UserObjType} from "./store";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -7,9 +7,17 @@ const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
+type StateType = {
+    users: Array<UserObjType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+}
 
 
-let initialState: any = {
+
+let initialState: StateType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
@@ -17,7 +25,7 @@ let initialState: any = {
     isFetching: true,
 }
 
-const usersReducer = (state: UsersType = initialState, action: any) => {
+const usersReducer = (state: StateType = initialState, action: any): StateType => {
 
     switch (action.type) {
 

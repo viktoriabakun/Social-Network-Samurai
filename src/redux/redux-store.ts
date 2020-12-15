@@ -12,6 +12,9 @@ let reducers = combineReducers({
     authReducer: authReducer,
 });
 
+
+export type RootStateRedux = ReturnType<typeof reducers>
+
 let store:  Store= createStore(reducers);
 
 // @ts-ignore

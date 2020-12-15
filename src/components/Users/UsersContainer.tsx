@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {RootStateRedux} from "../../redux/redux-store";
 
 
 type MapStatePropsType = {
@@ -20,6 +21,15 @@ type MapStatePropsType = {
     isFetching: boolean,
     totalUsersCount: number,
     users: Array<UserObjType>,
+}
+
+type MapDispatchPropsType = {
+    follow: (userID: number) => void
+    unfollow: (userID: number) => void
+    setUsers: (users: Array<UserObjType>) => void
+    setCurrentPage: (currentPage: number) => void,
+    setUsersTotalCount: (totalUsersCount: number) => void,
+    toggleIsFetching: (isFetching: boolean) => void
 }
 
 
@@ -74,7 +84,7 @@ class UsersContainer extends React.Component<PropsType> {
     }
 }
 
-let mapStateToProps = (state: RootStateType): MapStatePropsType => {
+let mapStateToProps = (state: RootStateRedux): MapStatePropsType => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -84,16 +94,9 @@ let mapStateToProps = (state: RootStateType): MapStatePropsType => {
     }
 }
 
-type MapDispatchPropsType = {
-    follow: (userID: number) => void
-    unfollow: (userID: number) => void
-    setUsers: (users: Array<UserObjType>) => void
-    setCurrentPage: (currentPage: number) => void,
-    setUsersTotalCount: (totalUsersCount: number) => void,
-    toggleIsFetching: (isFetching: boolean) => void
-}
 
-export default connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, RootStateType>(mapStateToProps, {
+
+export default connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, RootStateRedux>(mapStateToProps, {
 
     follow,
     unfollow,
