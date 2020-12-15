@@ -3,6 +3,7 @@ import s from "./Users.module.css";
 import userImg from "../../assets/images/userImg.png";
 import {UserObjType} from "../../redux/store";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 export type UsersProps = {
     users: Array<UserObjType>
@@ -49,11 +50,31 @@ let Users = (props: UsersProps) => {
                 <div>
                     {u.followed
                         ? <button onClick={() => {
-                            props.unfollow(u.id)
-                        }}>unfollow</button>
+                            axios
+                                .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,  {
+                                    withCredentials: true,
+                                    headers: {
+                                        'API-KEY': '3cef8baf-ff4b-4311-bb54-af9699d41e4c'
+                                    }
+                                })
+                                .then(response => {
+                                    if(response.data.resultCode === 0){
+                                        props.unfollow(u.id)}});
+                            }}>unfollow</button>
+
                         : <button onClick={() => {
-                            props.follow(u.id)
-                        }}>follow</button>}
+                            axios
+                                .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                    withCredentials: true,
+                                    headers: {
+                                        'API-KEY': '3cef8baf-ff4b-4311-bb54-af9699d41e4c'
+                                    }
+                                })
+                                .then(response => {
+                                if(response.data.resultCode === 0){
+                                    props.follow(u.id)}
+                                    console.log('follow')});
+                            }}>follow</button>}
                  </div>
             </span>
                 <span>
