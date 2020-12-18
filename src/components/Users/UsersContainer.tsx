@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {RootStateType, UserObjType} from "../../redux/store";
+import {UserObjType} from "../../redux/store";
 import {
     follow,
     setCurrentPage,
@@ -9,11 +9,11 @@ import {
     toggleIsFetching,
     unfollow
 } from "../../redux/users-reducer";
-import axios from "axios";
+
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import {RootStateRedux} from "../../redux/redux-store";
-import {getUsers} from "../../api/api";
+import {usersAPI} from "../../api/api";
 
 
 type MapStatePropsType = {
@@ -23,7 +23,6 @@ type MapStatePropsType = {
     totalUsersCount: number,
     users: Array<UserObjType>,
 }
-
 type MapDispatchPropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
@@ -32,8 +31,6 @@ type MapDispatchPropsType = {
     setUsersTotalCount: (totalUsersCount: number) => void,
     toggleIsFetching: (isFetching: boolean) => void
 }
-
-
 type OwnPropsType = {}
 
 
@@ -44,7 +41,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     componentDidMount() {
         this.props.toggleIsFetching(true);
 
-        getUsers(this.props.currentPage, this.props.pageSize)
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then(data => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(data.items)
@@ -57,7 +54,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFetching(true)
 
-        getUsers(pageNumber, this.props.pageSize)
+        usersAPI.getUsers(pageNumber, this.props.pageSize)
             .then(data => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(data.items)
