@@ -33,8 +33,8 @@ class HeaderContainer extends React.Component<PropsType> {
 const mapStateToProps = (state:RootStateRedux): MapStateType => {
 
     return {
-        isAuth: state.authReducer.isAuth,
-        login: state.authReducer.login,
+        isAuth: state.auth.isAuth,
+        login: state.auth.login,
     }
 };
 

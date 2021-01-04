@@ -9,7 +9,7 @@ let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
-    authReducer: authReducer,
+    auth: authReducer,
 });
 
 
