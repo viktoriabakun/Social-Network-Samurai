@@ -19,7 +19,6 @@ type StateType = {
     followingInProgress: any[]
 }
 
-
 let initialState: StateType = {
     users: [],
     pageSize: 5,
@@ -102,6 +101,7 @@ export const getUsers = (currentPage: number, pageSize: number) => {
                 dispatch(toggleIsFetching(false))
                 dispatch(setUsers(data.items))
                 dispatch(setUsersTotalCount(data.totalCount))
+                dispatch(setCurrentPage(currentPage))
             });
     }
 }

@@ -12,7 +12,6 @@ type PropsType = {
 const Profile = (props: PropsType) => {
 
     return (
-
         <div>
             <ProfileInfo profile={props.profile}/>
             <MyPostsContainer/>
