@@ -1,5 +1,7 @@
 import {PostsProps, ProfileReducerType, ProfileType} from "./store";
 import {v1} from "uuid";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT';
@@ -77,11 +79,17 @@ export const changeNewTextCreator = (text: string): ChangeNewTextActionCreatorTy
     } as const
 }
 
-export const setUserProfileCreator = (profile: ProfileType): SetUserProfileACType => {
+export const setUserProfile = (profile: ProfileType): SetUserProfileACType => {
     return {
         type: SET_USER_PROFILE,
         profile
     } as const
+}
+export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
+    usersAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data))
+        });
 }
 
 export type ProfileActionType = AddPostActionCreatorType | ChangeNewTextActionCreatorType | SetUserProfileACType
