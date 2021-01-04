@@ -41,6 +41,7 @@ export type UsersContainerPropsType = MapStatePropsType & MapDispatchPropsType &
 class UsersContainer extends React.Component<UsersContainerPropsType> {
 
     componentDidMount() {
+
         this.props.toggleIsFetching(true);
 
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
