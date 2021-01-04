@@ -83,15 +83,15 @@ const usersReducer = (state: StateType = initialState, action: any): StateType =
 }
 
 
-export const follow = (userID: number) => ({type: FOLLOW, userID})
-export const unfollow = (userID: number) => ({type: UNFOLLOW, userID})
+export const followSuccess = (userID: number) => ({type: FOLLOW, userID})
+export const unfollowSuccess = (userID: number) => ({type: UNFOLLOW, userID})
 export const setUsers = (users: Array<UserObjType>) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setUsersTotalCount = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching})
 export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
 
-
+// thunk:
 export const getUsers = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
 
@@ -103,6 +103,32 @@ export const getUsers = (currentPage: number, pageSize: number) => {
                 dispatch(setUsers(data.items))
                 dispatch(setUsersTotalCount(data.totalCount))
             });
+    }
+}
+
+export const follow = (userId: number) => {
+    return (dispatch: Dispatch) => {
+
+        dispatch(toggleFollowingProgress(true, userId))
+
+        usersAPI.follow(userId)
+            .then(response => {
+                if(response.data.resultCode === 0){
+                    dispatch(followSuccess(userId))}
+                dispatch(toggleFollowingProgress(false, userId))
+            });
+    }
+}
+
+export const unfollow = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        usersAPI.unfollow(userId)
+            .then(response => {
+                if(response.data.resultCode === 0){
+                    dispatch(unfollowSuccess(userId))}
+                dispatch(toggleFollowingProgress(false, userId))
+            });
+
     }
 }
 
