@@ -79,9 +79,6 @@ let mapStateToProps = (state: RootStateRedux): MapStatePropsType => {
     }
 }
 
-// let withRedirect = withAuthRedirect(UsersContainer)
-
-
 export default compose(
     withAuthRedirect,
     connect<MapStatePropsType,
