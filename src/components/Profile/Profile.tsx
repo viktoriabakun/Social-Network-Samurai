@@ -6,6 +6,7 @@ import {ProfileType} from "../../redux/store";
 
 type PropsType = {
    profile: ProfileType
+    status: string
 }
 
 

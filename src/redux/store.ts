@@ -14,6 +14,7 @@ let store: StoreType = {
             ],
             newPostText: '',
             profile: {} as  ProfileType,
+            status: ''
         },
         dialogsPage: {
             messages: [],
@@ -33,6 +34,7 @@ let store: StoreType = {
                 }
             ]
         },
+
         // usersPage: {
         //     users: [
         //         {
@@ -104,6 +106,7 @@ export type ProfileReducerType = {
     posts: Array<PostsProps>
     newPostText: string
     profile: ProfileType
+    status: string
 }
 export type ProfileType = {
     aboutMe: string,
