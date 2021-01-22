@@ -1,0 +1,9 @@
+
+.formControl.error input,
+.formControl.error textarea{
+    border: 4px solid red;;
+}
+
+.formControl.error div{
+    color: red;
+}

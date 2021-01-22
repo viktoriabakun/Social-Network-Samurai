@@ -3,6 +3,8 @@ import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {PostsProps,} from "../../../redux/store";
 import {reduxForm, Field, InjectedFormProps} from "redux-form";
+import {maxLengthCreator, required} from "../../../utils/validators/validator";
+import {Textarea} from "../../common/FormsControls/FormControls";
 
 
 type PropsType = {
@@ -26,10 +28,25 @@ const MyPosts = (props: PropsType) => {
         props.addPost(values.newPostText);
     }
 
-    // const onPostChange = () => {
-    //     let text = newPostElement.current ? newPostElement.current.value : "---";
-    //     // props.updateNewPostText(text);
-    // }
+   const maxLength10 = maxLengthCreator(10)
+
+    const AddNewPostForm: React.FC<InjectedFormProps<AddNewPostFormDataType>> = (props) => {
+        return (
+            <form onSubmit={props.handleSubmit}>
+                <div>
+                    <Field name='newPostText'
+                           component={Textarea}
+                           placeholder='Enter your text'
+                           validate={[required, maxLength10]}
+                    />
+                </div>
+                <div>
+                    <button>Add post</button>
+                </div>
+            </form>
+        )
+    }
+    const AddNewPostReduxForm = reduxForm<AddNewPostFormDataType>({form: 'ProfileAddNewPostForm'})(AddNewPostForm)
 
     return <div className={s.posts_block}>
         <h3>My posts</h3>
@@ -40,20 +57,6 @@ const MyPosts = (props: PropsType) => {
 
     </div>
 }
-const AddNewPostForm: React.FC<InjectedFormProps<AddNewPostFormDataType>> = (props) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field name='newPostText'
-                       component='textarea'
-                       placeholder='Enter your text'/>
-            </div>
-            <div>
-                <button>Add post</button>
-            </div>
-        </form>
-    )
-}
-const AddNewPostReduxForm = reduxForm<AddNewPostFormDataType>({form: 'ProfileAddNewPostForm'})(AddNewPostForm)
+
 
 export default MyPosts;
