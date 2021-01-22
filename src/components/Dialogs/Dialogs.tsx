@@ -10,7 +10,7 @@ import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 type PropsType = {
     dialogsPage: MessagesPage
     updateNewMessageBody: (body: any) => void
-    sendMessage: () => void
+    sendMessage: (values: any) => void
     isAuth: boolean
 }
 
@@ -25,15 +25,9 @@ const Dialogs = (props: PropsType) => {
     let avatarsElements = state.avatars.map(a => <AvatarItem id={a.id} key={a.id} src={a.src}/>)
     let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>)
     let messagesElements = state.messages.map(m => <Message message={m.message} key={m.id} id={m.id}/>)
-    let newMessageBody = state.newMessageBody;
 
-    const onSendMessageClick = () => {
-        props.sendMessage();
-    }
-
-    const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.target.value;
-        props.updateNewMessageBody(body)
+    const addNewMessage = (values: any) => {
+        props.sendMessage(values.newMessageBody)
     }
 
     if (!props.isAuth) return <Redirect to={'/login'}/>
@@ -49,7 +43,7 @@ const Dialogs = (props: PropsType) => {
             <div className={s.messages}>
                 {messagesElements}
 
-                <AddMessageFormRedux/>
+                <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
 

@@ -12,13 +12,12 @@ let store: StoreType = {
                 {id: v1(), message: 'Hello', count: 40},
                 {id: v1(), message: '123456789', count: 1000000}
             ],
-            newPostText: '',
             profile: {} as  ProfileType,
-            status: ''
+            status: '',
+            newPostText: ''
         },
         dialogsPage: {
             messages: [],
-            newMessageBody: '',
             dialogs: [
                 {id: v1(), name: 'Dimych'},
                 {id: v1(), name: 'Andrey'}
@@ -104,9 +103,9 @@ export type PostsProps = {
 }
 export type ProfileReducerType = {
     posts: Array<PostsProps>
-    newPostText: string
     profile: ProfileType
     status: string
+    newPostText: string
 }
 export type ProfileType = {
     aboutMe: string,
@@ -147,7 +146,6 @@ export type MessagesPage = {
     dialogs: Array<DialogsProps>
     messages: Array<MessageProps>
     avatars: Array<AvatarsType>
-    newMessageBody: any
 }
 
 export type RootStateType = {
