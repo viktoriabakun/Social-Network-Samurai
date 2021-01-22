@@ -1,4 +1,3 @@
-import {UsersType} from "./store";
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {ThunkDispatch} from 'redux-thunk';
@@ -12,22 +11,21 @@ export type InitialStateType = {
     isAuth: boolean
 }
 
-let initialState: any = {
+let initialState: InitialStateType = {
     userId: null,
     email: null,
     login: null,
     isAuth: false,
 }
 
-const authReducer = (state: UsersType = initialState, action: any) => {
+const authReducer = (state: InitialStateType = initialState, action: any) => {
 
     switch (action.type) {
 
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.payload,
-                isAuth: true,
+                ...action.payload
             }
 
 
