@@ -7,3 +7,9 @@
 .formControl.error div{
     color: red;
 }
+.formSummaryError{
+    width: 155px;
+    color: red;
+    padding: 3px;
+    border: 1px solid #F35E18;
+}
