@@ -12,7 +12,7 @@ let initialState: InitialStateType = {
     initialized: false
 }
 
-const appReducer = (state: InitialStateType = initialState, action: initializedSuccessACType) => {
+const appReducer = (state: InitialStateType = initialState, action: initializedSuccessACType):InitialStateType => {
 
     switch (action.type) {
 
@@ -41,8 +41,6 @@ export const initializeApp = () => (dispatch: ThunkDispatch<RootStateRedux, unkn
             dispatch(initializedSuccess())
         })
 }
-
-
 
 
 type ActionType = initializedSuccessACType

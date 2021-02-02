@@ -1,13 +1,27 @@
-import React from 'react'
+import React, {FC} from 'react'
 import {connect} from "react-redux";
-import {UserObjType} from "../../redux/store";
-import {followSuccess, getUsers, setCurrentPage, unfollowSuccess} from "../../redux/users-reducer";
+import {
+    followSuccess,
+    requestUsers,
+    setCurrentPage,
+    toggleFollowingProgress,
+    unfollowSuccess
+} from "../../redux/users-reducer";
 
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import {RootStateRedux} from "../../redux/redux-store";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/users-selectors";
+import {UserObjType} from "../../redux/store";
 
 
 type MapStatePropsType = {
@@ -18,6 +32,14 @@ type MapStatePropsType = {
     users: Array<UserObjType>,
     followingInProgress: any[]
 }
+// type MapStatePropsType = {
+//     currentPage: any,
+//     pageSize: any,
+//     isFetching: any,
+//     totalUsersCount: any,
+//     users: any,
+//     followingInProgress: any
+// }
 type MapDispatchPropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
@@ -68,27 +90,51 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 }
 
+// let mapStateToProps = (state: RootStateRedux): MapStatePropsType => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         followingInProgress: state.usersPage.followingInProgress,
+//     }
+// }
+
 let mapStateToProps = (state: RootStateRedux): MapStatePropsType => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state),
     }
 }
 
-export default compose(
-    withAuthRedirect,
-    connect<MapStatePropsType,
-        MapDispatchPropsType,
-        OwnPropsType,
-        RootStateRedux>(mapStateToProps, {
+// export default compose(
+//     withAuthRedirect,
+//     connect<MapStatePropsType,
+//         MapDispatchPropsType,
+//         OwnPropsType,
+//         RootStateRedux>(mapStateToProps, {
+//
+//         follow: followSuccess,
+//         unfollow: unfollowSuccess,
+//         setCurrentPage,
+//         getUsers
+//     })
+// )(UsersContainer)
+
+export default compose<FC>(
+
+    connect(mapStateToProps, {
 
         follow: followSuccess,
         unfollow: unfollowSuccess,
         setCurrentPage,
-        getUsers
-    })
+        toggleFollowingProgress,
+        getUsers: requestUsers
+    }),
+    withAuthRedirect
 )(UsersContainer)

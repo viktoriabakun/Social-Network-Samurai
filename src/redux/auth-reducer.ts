@@ -6,7 +6,7 @@ import {stopSubmit} from "redux-form";
 const SET_USER_DATA = 'SET_USER_DATA';
 
 export type InitialStateType = {
-    userId: null | string,
+    userId: null | number,
     email: null | string,
     login: null | string,
     isAuth: boolean
@@ -19,7 +19,7 @@ let initialState: InitialStateType = {
     isAuth: false,
 }
 
-const authReducer = (state: InitialStateType = initialState, action: any) => {
+const authReducer = (state: InitialStateType = initialState, action: ActionType):InitialStateType => {
 
     switch (action.type) {
 
@@ -38,8 +38,8 @@ const authReducer = (state: InitialStateType = initialState, action: any) => {
 export const setAuthUserData = (userId: number|null, email: string|null, login: string|null, isAuth: boolean) =>
     ({type: SET_USER_DATA, payload: {userId, email, login, isAuth}} as const)
 
-// type SetAuthUserDataACType = ReturnType<typeof setAuthUserData>
-// type ActionType = SetAuthUserDataACType
+type SetAuthUserDataACType = ReturnType<typeof setAuthUserData>
+type ActionType = SetAuthUserDataACType
 
 
 

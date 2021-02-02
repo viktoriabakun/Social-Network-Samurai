@@ -7,7 +7,7 @@ import {RootStateRedux} from "../../redux/redux-store";
 
 type MapStateType = {
     isAuth: boolean,
-    login: string,
+    login: string | null,
 }
 
 type MapDispatchPropsType = {

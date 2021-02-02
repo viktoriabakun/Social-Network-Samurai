@@ -16,7 +16,7 @@ import {initializeApp} from "./redux/app-reducer";
 import {RootStateRedux} from "./redux/redux-store";
 import Preloader from "./components/common/Preloader/Preloader";
 
-class App extends React.Component<MapDispatchPropsType> {
+class App extends React.Component<PropsType> {
 
     componentDidMount() {
         this.props.initializeApp()
@@ -61,7 +61,7 @@ const MapStateToProps = (state: RootStateRedux):MapStateType => {
     return {
         initialized: state.app.initialized
     }
-} 
+}
 
 type MapStateType = {
     initialized: boolean
@@ -70,6 +70,8 @@ type MapStateType = {
 type MapDispatchPropsType = {
     initializeApp: () => void
 }
+
+type PropsType = MapStateType & MapDispatchPropsType
 
 export default compose<React.ComponentType>(
     withRouter,

@@ -15,7 +15,7 @@ type PathParamsType = {
 type MapStatePropsType = {
     profile: ProfileType
     status: string
-    authorizedUserId: number
+    authorizedUserId: number | null
     isAuth: boolean
 }
 type MapDispatchPropsType = {
