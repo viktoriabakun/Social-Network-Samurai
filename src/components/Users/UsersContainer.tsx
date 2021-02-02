@@ -32,6 +32,7 @@ type MapStatePropsType = {
     users: Array<UserObjType>,
     followingInProgress: any[]
 }
+
 // type MapStatePropsType = {
 //     currentPage: any,
 //     pageSize: any,
