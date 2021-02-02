@@ -1,8 +1,13 @@
 import {RootStateRedux} from "./redux-store";
+import {createSelector} from "reselect";
 
-export const getUsers = (state: RootStateRedux) => {
+const getUsersPrimitiveSelector = (state: RootStateRedux) => {
     return state.usersPage.users
 }
+
+export const getUsers = createSelector(getUsersPrimitiveSelector, (users) => {
+   return users.filter(u => true)
+})
 
 export const getPageSize = (state: RootStateRedux) => {
     return state.usersPage.pageSize
