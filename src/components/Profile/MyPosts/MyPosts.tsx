@@ -18,7 +18,7 @@ export type AddNewPostFormDataType = {
 }
 
 
-const MyPosts = (props: PropsType) => {
+const MyPosts = React.memo((props: PropsType) => {
 
     let postsElements = props.posts
         .map(p => <Post key={p.id} message={p.message} count={p.count}/>)
@@ -56,7 +56,7 @@ const MyPosts = (props: PropsType) => {
         </div>
 
     </div>
-}
+})
 
 
 export default MyPosts;
