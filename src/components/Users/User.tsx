@@ -19,7 +19,6 @@ export type UsersProps = {
 }
 
 let User: React.FC<UsersProps> = ({ user, followingInProgress,follow, unfollow,...props}) => {
-
     return (
      <div>
             <span>

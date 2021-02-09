@@ -37,7 +37,7 @@ const usersReducer = (state: StateType = initialState, action: any): StateType =
             return {
                 ...state,
                 users: updateObjectInArray(state.users,
-                    action.userId,
+                    action.userID,
                     'id',
                     {followed: true})
                 // users: state.users.map(u => {
@@ -53,7 +53,7 @@ const usersReducer = (state: StateType = initialState, action: any): StateType =
             return {
                 ...state,
                 users: updateObjectInArray(state.users,
-                    action.userId,
+                    action.userID,
                     'id',
                     {followed: false})
                 // users: state.users.map(u => {

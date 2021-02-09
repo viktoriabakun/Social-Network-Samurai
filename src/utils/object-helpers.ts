@@ -6,10 +6,9 @@ type newObjPropsType = {
 
 export const updateObjectInArray = (users:  Array<UserObjType>,
                                     itemId: number,
-                                    objPropName: string,
+                                    objPropName: keyof UserObjType,
                                     newObjProps: newObjPropsType) => {
     return users.map(u => {
-        // @ts-ignore
         if (u[objPropName] === itemId) {
             return {...u, ...newObjProps}
         }
