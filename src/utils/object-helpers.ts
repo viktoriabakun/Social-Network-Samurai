@@ -1,0 +1,18 @@
+import {UserObjType} from "../redux/store";
+
+type newObjPropsType = {
+    followed: boolean
+}
+
+export const updateObjectInArray = (users:  Array<UserObjType>,
+                                    itemId: number,
+                                    objPropName: string,
+                                    newObjProps: newObjPropsType) => {
+    return users.map(u => {
+        // @ts-ignore
+        if (u[objPropName] === itemId) {
+            return {...u, ...newObjProps}
+        }
+        return u;
+    })
+}

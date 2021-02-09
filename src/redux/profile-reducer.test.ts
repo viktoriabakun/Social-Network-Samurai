@@ -33,7 +33,6 @@ test('new post message should be correct', () => {
 //     expect(newState.posts.length).toBe(3)
 // })
 
-
 test('length of messages shouldn\'t be decremented if id is wrong', () => {
     let action = deletePost('kamasutra')
     let newState = profileReducer(state, action)
