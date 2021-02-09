@@ -6,6 +6,7 @@ import {profileAPI, usersAPI} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS'
+const DELETE_POST = 'DELETE_POST'
 
 let initialState: initialStateType = {
     posts: [
@@ -19,7 +20,6 @@ let initialState: initialStateType = {
     profile: {} as ProfileType,
     status: ''
 }
-
 
 export type initialStateType = {
     posts: Array<PostsProps>
@@ -57,6 +57,13 @@ const profileReducer = (state: initialStateType = initialState, action: ProfileA
             }
         }
 
+        case DELETE_POST:{
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id != action.postId)
+            }
+        }
+
         default:
             return state;
     }
@@ -71,7 +78,8 @@ type SetUserProfileACType = {
     type: typeof SET_USER_PROFILE
     profile: ProfileType
 }
-type SetStatusACType = {type: typeof SET_STATUS, status: string}
+type SetStatusACType = { type: typeof SET_STATUS, status: string }
+type DeleteProfileACType = { type: typeof DELETE_POST, postId: string }
 
 // Action Creators
 export const addPostCreator = (newPostText: string): AddPostActionCreatorType => {
@@ -81,11 +89,17 @@ export const addPostCreator = (newPostText: string): AddPostActionCreatorType =>
     } as const
 }
 
-export const setStatus = (status: string):SetStatusACType => ({type: SET_STATUS, status})
+export const setStatus = (status: string): SetStatusACType => ({type: SET_STATUS, status})
 export const setUserProfile = (profile: ProfileType): SetUserProfileACType => {
     return {
         type: SET_USER_PROFILE,
         profile
+    } as const
+}
+export const deletePost = (postId: string): DeleteProfileACType => {
+    return {
+        type: DELETE_POST,
+        postId
     } as const
 }
 
@@ -106,11 +120,14 @@ export const getStatus = (userId: number) => (dispatch: Dispatch) => {
 export const updateStatus = (status: string) => (dispatch: Dispatch) => {
     profileAPI.updateStatus(status)
         .then(response => {
-            if(response.data.resultCode === 0)
-            dispatch(setStatus(status))
+            if (response.data.resultCode === 0)
+                dispatch(setStatus(status))
         });
 }
 
 
-export type ProfileActionType = AddPostActionCreatorType | SetUserProfileACType | SetStatusACType
+export type ProfileActionType = AddPostActionCreatorType
+    | SetUserProfileACType
+    | SetStatusACType
+    | DeleteProfileACType
 export default profileReducer;
