@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Header.module.css';
+import index  from '../common/defaultStyles.module.css'
 import {NavLink} from "react-router-dom";
 
 type PropsType = {
@@ -12,7 +13,7 @@ const Header = (props: PropsType) => {
     return <header className={s.header}>
         <div className={s.loginBlock}>
             {props.isAuth
-                ? <div>{props.login}  <button onClick={props.logout}>Log out</button> </div>
+                ? <div>{props.login}  <button className={index.defaultButton} onClick={props.logout}>Log out</button> </div>
                 : <NavLink to={'/login'}>Login</NavLink>}
         </div>
     </header>

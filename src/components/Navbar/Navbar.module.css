@@ -1,7 +1,7 @@
 .nav {
+    display: flex;
+    flex-direction: column;
     margin: 20px;
-    grid-area: n;
-    background-color: #e7c3d6;
     padding: 30px;
     font-weight: bold;
     font-size: 20px;
@@ -9,7 +9,7 @@
 }
 
 .item a{
-    color: black;
+    color: #958dc1;
     display: block;
     text-decoration: none;
     margin: 20px;

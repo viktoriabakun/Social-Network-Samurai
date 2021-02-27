@@ -1,15 +1,22 @@
 .app-wrapper {
     width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-areas: "h h" "n c";
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
-    background-color: gold;
+    /*display: grid;*/
+    /*grid-template-areas: "h h" "n c";*/
+    /*grid-template-rows: 60px 1fr;*/
+    /*grid-template-columns: 2fr 10fr;*/
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    color: white;
 }
 
 
 .app-wrapper-content {
-    grid-area: c;
     margin: 20px auto;
+}
+
+.mainContentContainer{
+    display: flex;
+    flex-direction: row;
 }

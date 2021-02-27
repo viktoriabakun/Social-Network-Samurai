@@ -1,5 +1,6 @@
 import React from "react";
 import s from './MyPosts.module.css';
+import index from '../../common/defaultStyles.module.css'
 import Post from "./Post/Post";
 import {PostsProps,} from "../../../redux/store";
 import {reduxForm, Field, InjectedFormProps} from "redux-form";
@@ -41,7 +42,7 @@ const MyPosts = React.memo((props: PropsType) => {
                     />
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button className={index.defaultButton}>Add post</button>
                 </div>
             </form>
         )

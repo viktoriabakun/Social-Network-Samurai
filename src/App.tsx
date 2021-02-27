@@ -32,6 +32,7 @@ class App extends React.Component<PropsType> {
 
             <div className='app-wrapper'>
                 <HeaderContainer/>
+                <div className='mainContentContainer'>
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'
@@ -50,6 +51,7 @@ class App extends React.Component<PropsType> {
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
+                </div>
                 </div>
             </div>
 

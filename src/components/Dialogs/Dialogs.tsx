@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css';
+import index from '../common/defaultStyles.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {MessagesPage} from "../../redux/store";
@@ -65,7 +66,7 @@ const AddMessageForm:React.FC<InjectedFormProps<AddMessageFormType>> = (props) =
                 />
                 </div>
             <div>
-                <button>Send</button>
+                <button className={index.defaultButton}>Send</button>
             </div>
         </form>
     )
